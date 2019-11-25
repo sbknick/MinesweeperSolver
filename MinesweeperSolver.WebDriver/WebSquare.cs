@@ -14,7 +14,7 @@ namespace MinesweeperSolver.WebDriver
         private IWebElement Element { get; }
 
         private string Class => this.Element.GetAttribute("class");
-        private Actions SpaceMeUp { get; }
+        private IAction SpaceMeUp { get; }
 
         private static readonly Regex NumberRegex = new Regex(@".* open(\d)");
 
@@ -28,7 +28,8 @@ namespace MinesweeperSolver.WebDriver
 
             this.SpaceMeUp = new Actions(driver)
                 .MoveToElement(element)
-                .SendKeys(Keys.Space);
+                .SendKeys(Keys.Space)
+                .Build();
         }
 
         public (int x, int y) Index { get; }
