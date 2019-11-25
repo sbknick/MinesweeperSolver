@@ -1,4 +1,4 @@
-﻿namespace MinesweeperSolver.WebDriver
+namespace MinesweeperSolver.WebDriver
 {
     using MinesweeperSolver.Models;
     using OpenQA.Selenium;
@@ -9,7 +9,6 @@
     public class WebSquare : ISquare
     {
         private bool isCleared;
-        private bool? _isFlagged;
         private bool? _isNumber;
 
         private IWebElement Element { get; }
@@ -36,30 +35,7 @@
 
         public bool IsBlank { get; private set; }
 
-        public bool IsFlagged
-        {
-            get
-            {
-                if (this._isFlagged.HasValue) return this._isFlagged.Value;
-
-                var result = this.Class.Contains("bombflagged");
-                if (result)
-                {
-                    this.IsFlagged = true;
-                }
-                return result;
-            }
-            private set
-            {
-                if (value)
-                {
-                    this._isFlagged = true;
-                    this.IsBlank = false;
-                    this.IsNumber = false;
-                }
-                else this._isFlagged = false;
-            }
-        }
+        public bool IsFlagged { get; private set; }
 
         public bool IsNumber
         {
@@ -92,7 +68,7 @@
         public void Clear()
         {
             if (this.isCleared) return;
-            if (this.IsBlank || this._isFlagged == true) throw new NotSupportedException(); 
+            if (this.IsBlank || this.IsFlagged) throw new NotSupportedException(); 
 
             if (this.Number != 0)
                 this.SpaceMeUp.Perform();
@@ -119,12 +95,15 @@
 
             this.SpaceMeUp.Perform();
             this.IsFlagged = true;
+            this.IsBlank = false;
+            this.IsNumber = false;
         }
 
         private bool TestIsNumber(out int number)
         {
             number = 0;
-            var match = NumberRegex.Match(this.Class);
+            var @class = this.Class;
+            var match = NumberRegex.Match(@class);
 
             if (!match.Success) return false;
 
