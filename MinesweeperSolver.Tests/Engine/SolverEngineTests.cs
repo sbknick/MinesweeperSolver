@@ -67,10 +67,6 @@
             logicEngine3.Verify(tryDoStep, Times.Exactly(k));
         }
 
-        private delegate void CaptureTryDoStepParams(IEnumerable<ISquare> input, out IReadOnlyList<ISquare> processed, out IReadOnlyList<ISquare> toProcess);
-
-        private delegate void CaptureInputParam(IEnumerable<ISquare> input);
-
         [Test]
         public void Should_QueueSquaresProperly()
         {

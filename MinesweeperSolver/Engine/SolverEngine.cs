@@ -41,7 +41,10 @@
             if (!anyStepSucceeded)
             {
                 var allBlanks = this.MapHandler.AllSquares.Except(this.processedSquares).Except(this.queuedSquares);
-                var randomGuess = allBlanks.First();
+                var randomGuess = allBlanks.FirstOrDefault();
+
+                if (randomGuess == null) yield break;
+
                 randomGuess.Click();
 
                 if (randomGuess.IsNumber)
@@ -51,15 +54,6 @@
                     else
                         this.queuedSquares.AddRange(this.MapHandler.GetNumberSplat(randomGuess));
                 }
-                else
-                {
-                    
-                }
-
-                //foreach (var logicEngine in this.LogicEngines)
-                //{
-                //    logicEngine.StartFresh();
-                //}
             }
         }
     }
