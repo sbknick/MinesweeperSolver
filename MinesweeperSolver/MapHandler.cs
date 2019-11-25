@@ -71,7 +71,7 @@
                 }
         }
 
-        public IEnumerable<ISquare> GetAllNumbers(ISquare square)
+        public IEnumerable<ISquare> GetNumberSplat(ISquare square)
         {
             var toTest = new HashSet<ISquare> { square };
             var splat = new HashSet<ISquare> { square };
@@ -81,7 +81,7 @@
                 var sq = toTest.Pop();
 
                 var adj = this.GetAdjacentNumbers(sq, sw => !splat.Contains(sw.Square));
-                toTest.AddRange(adj);
+                toTest.AddRange(adj.Where(s => s.Number == 0));
                 splat.AddRange(adj);
             }
 
@@ -115,12 +115,11 @@
     {
         ISquare Square { get; }
         int NumberLeft { get; }
-
-        IEnumerable<ISquare> Blanks { get; }
     }
 
     public struct SquareWrapper : ISquareWrapper
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S2933:Fields that are only assigned in the constructor should be \"readonly\"", Justification = "Actually is assigned, just bad parsing of new syntax: ??=")]
         private ISquare[] _adjacentSquares;
         private ISquare[] AdjacentSquares => this._adjacentSquares ??= this.Adjacent();
 

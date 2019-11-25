@@ -49,7 +49,7 @@
                     if (randomGuess.Number > 0)
                         this.queuedSquares.Add(randomGuess);
                     else
-                        this.queuedSquares.AddRange(this.MapHandler.GetAllNumbers(randomGuess));
+                        this.queuedSquares.AddRange(this.MapHandler.GetNumberSplat(randomGuess));
                 }
                 else
                 {

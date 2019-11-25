@@ -57,7 +57,7 @@
             this.MapHandler.Click(square);
             if (square.IsNumber && square.Number == 0)
             {
-                var splat = this.MapHandler.GetAllNumbers(square).ToArray();
+                var splat = this.MapHandler.GetNumberSplat(square).ToArray();
                 foreach (var sq in splat)
                 {
                     if (sq.Number == 0)

@@ -35,7 +35,7 @@
             Assert.IsTrue(result);
             mapHandler.Verify(x => x.GetSquare(startIndex), Times.Once);
             mapHandler.Verify(x => x.Click(square.Object), Times.Once);
-            mapHandler.Verify(x => x.GetAllNumbers(square.Object), Times.Once);
+            mapHandler.Verify(x => x.GetNumberSplat(square.Object), Times.Once);
             square.VerifyGet(x => x.IsNumber, Times.Once);
             square.VerifyGet(x => x.Number,  Times.Once);
             mapHandler.VerifyNoOtherCalls();
@@ -58,7 +58,7 @@
             Assert.IsTrue(result);
             mapHandler.Verify(x => x.GetRandomSquare(), Times.Once);
             mapHandler.Verify(x => x.Click(It.IsAny<ISquare>()), Times.Once);
-            mapHandler.Verify(x => x.GetAllNumbers(It.IsAny<ISquare>()), Times.Once);
+            mapHandler.Verify(x => x.GetNumberSplat(It.IsAny<ISquare>()), Times.Once);
             mapHandler.VerifyNoOtherCalls();
         }
 

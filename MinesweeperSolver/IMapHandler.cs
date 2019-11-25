@@ -24,6 +24,6 @@
 
         IEnumerable<ISquare> GetAdjacentSquares(ISquare square, Func<ISquare, bool> predicate = null);
 
-        IEnumerable<ISquare> GetAllNumbers(ISquare square);
+        IEnumerable<ISquare> GetNumberSplat(ISquare square);
     }
 }
