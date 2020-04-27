@@ -8,6 +8,7 @@ namespace MinesweeperSolver.WebDriver
 
     public class WebSquare : ISquare
     {
+        //private bool isDirty;
         private bool isCleared;
         private bool? _isNumber;
 
@@ -99,6 +100,8 @@ namespace MinesweeperSolver.WebDriver
             this.IsBlank = false;
             this.IsNumber = false;
         }
+
+        //public void SetDirty() => this.isDirty = true;
 
         private bool TestIsNumber(out int number)
         {

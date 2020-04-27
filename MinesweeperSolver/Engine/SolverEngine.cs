@@ -1,5 +1,6 @@
 ﻿namespace MinesweeperSolver.Engine
 {
+    using System;
     using global::MinesweeperSolver.Models;
     using System.Collections;
     using System.Collections.Generic;
@@ -40,10 +41,11 @@
 
             if (!anyStepSucceeded)
             {
-                var allBlanks = this.MapHandler.AllSquares.Except(this.processedSquares).Except(this.queuedSquares);
-                var randomGuess = allBlanks.FirstOrDefault();
+                var allBlanks = this.MapHandler.AllSquares.Except(this.processedSquares).Except(this.queuedSquares).ToArray();
 
-                if (randomGuess == null) yield break;
+                if (!allBlanks.Any()) yield break;
+
+                var randomGuess = allBlanks[new Random().Next(allBlanks.Length)];
 
                 randomGuess.Click();
 

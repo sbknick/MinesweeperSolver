@@ -32,8 +32,9 @@
 
             return new SolverEngine(mapHandler, new ILogicEngine[]
             {
+                //new FullLogicEngine(mapHandler),
                 new SimpleEngine(mapHandler),
-                new TrickEngine(mapHandler), 
+                new TrickEngine(mapHandler),
             });
         }
     }

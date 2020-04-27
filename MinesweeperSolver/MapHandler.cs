@@ -17,6 +17,10 @@
         public IEnumerable<ISquare> AllSquares => this.Map.SquaresGrid.Values;
 
         public void Click(ISquare square) => square.Click();
+        public void Click(IEnumerable<ISquare> squares)
+        {
+            foreach (var sq in squares) sq.Click();
+        }
 
         public void Clear(ISquare square) => square.Clear();
 

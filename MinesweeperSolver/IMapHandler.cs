@@ -9,6 +9,7 @@
         IEnumerable<ISquare> AllSquares { get; }
 
         void Click(ISquare square);
+        void Click(IEnumerable<ISquare> squares);
         void Clear(ISquare square);
         void Flag(ISquare square);
         void Flag(IEnumerable<ISquare> squares);

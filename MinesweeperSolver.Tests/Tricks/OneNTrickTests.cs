@@ -354,6 +354,35 @@
                 TriggerIndex = (2, 3),
                 ExpectedFlaggedIndex = (2, 1),
             };
+
+
+            /*  +-+-+
+             *  |1|#|
+             *  |1|#|
+             *  |2|#|
+             *  |1|#|
+             *  +-+-+
+             */
+            yield return new TestCase
+            {
+                Map = new TestMap
+                {
+                    SquaresGrid = new ISquare[]
+                    {
+                        new TestSquare { Index = (1, 1), IsNumber = true, Number = 1 },
+                        new TestSquare { Index = (1, 2), IsNumber = true, Number = 1 },
+                        new TestSquare { Index = (1, 3), IsNumber = true, Number = 2 },
+                        new TestSquare { Index = (1, 4), IsNumber = true, Number = 9 },
+
+                        new TestSquare { Index = (2, 1), IsBlank = true },
+                        new TestSquare { Index = (2, 2), IsBlank = true },
+                        new TestSquare { Index = (2, 3), IsBlank = true },
+                        new TestSquare { Index = (2, 4), IsBlank = true },
+                    }.ToDictionary(x => x.Index),
+                },
+                TriggerIndex = (1, 2),
+                ExpectedFlaggedIndex = (2, 4),
+            };
         }
 
         private static IEnumerable<TestCase> BadTestCases()
